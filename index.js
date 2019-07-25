@@ -18,13 +18,11 @@ class Driver {
     );
   }
   passengers() {
-    // - returns all of the passengers that a driver has taken on a trip
-    return store.passengers.filter(
-      function(passenger) {
-        return passenger.driverId === this.id;
-      }.bind(this)
-    );
-  }  
+    return this.trips().map(function(trip) {
+      return trip.passenger()
+    });
+  }
+  
 }
 
 let passengerId = 0
@@ -46,6 +44,9 @@ class Passenger {
   }
   drivers() {
     // - returns all of the drivers that a passenger has taken on a trip
+    return this.trips().map(function(trip) {
+      return trip.driver()
+    });
   }
 }
 
